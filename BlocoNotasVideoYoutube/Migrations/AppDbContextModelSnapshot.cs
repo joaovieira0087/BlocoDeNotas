@@ -39,7 +39,7 @@ namespace BlocoNotasVideoYoutube.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Notas");
+                    b.ToTable("Notas", (string)null);
                 });
 #pragma warning restore 612, 618
         }

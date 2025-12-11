@@ -1,4 +1,37 @@
+@using System.Text.RegularExpressions
+@model List<Nota>
 
+   <div class="container mt-4">
+       <h2>Bloco de Notas Online</h2>
+
+       <div id="toolbar" class="mb-2"></div>
+       <div id="editor" style="height:200px; margin-bottom: 10px"></div>
+
+       <button id="btnsalvar" class="btn btn-primary mb-4">Salvar</button>
+
+       <hr />
+
+       <h4 class="mb-3">Notas Salvas</h4>
+
+       <div id="notasContainer" class="row g-3">
+           @if(Model != null)
+            {
+                @foreach (var nota in Model)
+                {
+                    var textoLimpo = Regex.Replace(nota.Conteudo, "<.*?>", "");
+                    var resumo = textoLimpo.Length > 60 ? textoLimpo.Substring(0, 20) + "..." : textoLimpo;
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card shadow-sm bloco" id="nota-@nota.Id">
+                            <div class="card-body p-2">
+                                <p class="card-text small">@resumo</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+    </div>
+   </div>
 
 
 <!-- NÃO APAGUE É A REFERENCIA PARA BIBLIOTECA Quill -->

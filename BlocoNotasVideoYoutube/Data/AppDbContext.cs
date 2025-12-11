@@ -10,6 +10,6 @@ namespace BlocoNotasVideoYoutube.Data
             
         }
 
-        DbSet<Nota> Notas { get; set; }
+        public DbSet<Nota> Notas { get; set; }
     }
 }
