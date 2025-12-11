@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlocoNotasVideoYoutube", "BlocoNotasVideoYoutube\BlocoNotasVideoYoutube.csproj", "{D91789DC-4B11-4265-AB21-95FDF5ED32EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlocoNotas", "BlocoNotasVideoYoutube\BlocoNotas.csproj", "{D91789DC-4B11-4265-AB21-95FDF5ED32EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
