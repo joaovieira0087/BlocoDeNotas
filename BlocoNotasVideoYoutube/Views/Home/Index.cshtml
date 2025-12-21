@@ -11,7 +11,7 @@
        <div id="toolbar" class="mb-2"></div>
        <div id="editor" style="height:200px; margin-bottom: 10px"></div>
 
-       <button id="btnsalvar" class="btn btn-primary mb-4">Salvar</button>
+    <button id="btnSalvar" class="btn btn-primary mb-4">Salvar</button>
 
        <hr />
 
@@ -70,6 +70,49 @@
         }
        });
 
+        let notaIdAtual = null;
+
+    $('#btnSalvar').on('click', function () {
+
+        let conteudo = quill.root.innerHTML;
+
+        if (conteudo.trim() === '' || conteudo === '<p><br></p>') {
+            alert('O conteúdo da nota não pode estar vazio.');
+            return;
+        }
+
+        $.post('/Home/SalvarNota', { id: notaIdAtual, conteudo: conteudo }, function (res) {
+
+            if (!res.sucesso) {
+                alert('Erro ao salvar.');
+                return;
+            }
+
+            if (notaIdAtual) {
+                // Atualiza a nota existente
+                let card = $(`#nota-${notaIdAtual}`);
+
+                if (card.length) {
+                    card.find('.card-text').html(res.resumo);
+                }
+
+            } else {
+                // Adiciona nova nota
+                $('#notasContainer').prepend(`
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card shadow-sm bloco" id="nota-${res.id}" onclick="carregarNota(${res.id})">
+                            <div class="card-body p-2">
+                                <p class="card-text small">${res.resumo}</p>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            }
+
+            notaIdAtual = null;
+            quill.setContents([]);
+        });
+    });
 
      
 
