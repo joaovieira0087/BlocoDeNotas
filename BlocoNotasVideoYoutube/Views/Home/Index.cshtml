@@ -28,7 +28,7 @@
                     var resumo = textoLimpo.Length > 60 ? textoLimpo.Substring(0, 20) + "..." : textoLimpo;
 
                     <div class="col-md-3 col-sm-6">
-                        <div class="card shadow-sm bloco" id="nota-@nota.Id">
+                        <div class="card shadow-sm bloco" id="nota-@nota.Id" onclick="carregarNota(@nota.Id)">
                             <div class="card-body p-2">
                                 <p class="card-text small">@resumo</p>
                             </div>
@@ -113,6 +113,13 @@
             quill.setContents([]);
         });
     });
+
+    function carregarNota (id) {
+        $.get('/Home/ObterNota', {id: id }, function (res) {
+            quill.root.innerHTML = res.conteudo;
+            notaIdAtual = id;
+        });
+    }
 
      
 
