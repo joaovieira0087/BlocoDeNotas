@@ -31,6 +31,8 @@
                         <div class="card shadow-sm bloco" id="nota-@nota.Id" onclick="carregarNota(@nota.Id)">
                             <div class="card-body p-2">
                                 <p class="card-text small">@resumo</p>
+                            <button id="nota-@nota.Id" onclick="excluirBloco(@nota.Id)" type="button" class="btn btn-danger">Apagar</button>
+
                             </div>
                         </div>
                     </div>
@@ -121,6 +123,13 @@
         });
     }
 
-     
+    function excluirBloco (id) {
+        $.Delete('/Home/ExcluirBloco' , {id: id }, function (res) {
+            quill.root.innerHTML = res.conteudo;
+            notaIdAtual = id;
+        });
+    }
+
+     // $.post('/Home/SalvarNota',
 
    </script>

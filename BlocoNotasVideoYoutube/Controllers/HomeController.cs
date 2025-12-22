@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using BlocoNotasVideoYoutube.Models;
 using BlocoNotasVideoYoutube.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlocoNotasVideoYoutube.Controllers;
 
@@ -64,6 +65,24 @@ public class HomeController : Controller
             sucesso = true,
             id = nota.Id,
             resumo = (conteudo.Length > 20 ? conteudo.Substring(0, 20) + "..." : conteudo)
+        });
+    }
+
+    [HttpDelete]
+    public JsonResult ExcluirBloco(int id)
+    {
+        var nota = _context.Notas.FirstOrDefault(n => n.Id == id);
+
+        if (nota != null)
+        {
+            _context.Remove(nota);
+        }
+
+        _context.SaveChanges();
+
+        return Json(new
+        {
+            sucesso = true,
         });
     }
 
