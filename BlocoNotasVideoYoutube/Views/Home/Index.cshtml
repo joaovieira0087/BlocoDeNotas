@@ -123,13 +123,22 @@
         });
     }
 
-    function excluirBloco (id) {
-        $.Delete('/Home/ExcluirBloco' , {id: id }, function (res) {
-            quill.root.innerHTML = res.conteudo;
-            notaIdAtual = id;
+        function excluirBloco(id) {
+        $.ajax({
+            url: '/Home/ExcluirBloco',
+            type: 'DELETE', // Especifica o método HTTP como DELETE
+            data: {
+                id: id
+            },
+            success: function(res) {
+                console.log("Sucesso:", res);
+
+            },
+            error: function(xhr, status, error) {
+                console.error("Erro:", error);
+            }
         });
     }
-
-     // $.post('/Home/SalvarNota',
+    
 
    </script>
