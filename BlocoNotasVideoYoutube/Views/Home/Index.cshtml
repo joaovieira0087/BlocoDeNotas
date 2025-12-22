@@ -123,16 +123,16 @@
         });
     }
 
-        function excluirBloco(id) {
+        async function excluirBloco(id) {
         $.ajax({
             url: '/Home/ExcluirBloco',
-            type: 'DELETE', // Especifica o método HTTP como DELETE
+            type: 'DELETE', 
             data: {
                 id: id
             },
             success: function(res) {
                 console.log("Sucesso:", res);
-
+                location.reload();
             },
             error: function(xhr, status, error) {
                 console.error("Erro:", error);
